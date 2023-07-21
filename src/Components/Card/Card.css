@@ -1,0 +1,35 @@
+.card {
+  min-height: 16rem;
+  height: 19%;
+  width: 19%;
+  min-width: 17rem;
+  border-radius: 10%;
+  background-color: #242424;
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.card img {
+  height: 70%;
+
+  max-height: 10rem;
+}
+
+.card h3 {
+  font-size: 1.05rem;
+  color: white;
+  font-weight: 100;
+}
+
+.card p {
+  font-size: 0.6rem;
+}
+
+.CardDetails {
+  padding: 0.8rem 1.6rem 0rem 1rem;
+    text-align: justify;
+}
+
+.card img {
+  border-radius: 10% 10% 0 0;
+}
