@@ -1,27 +1,39 @@
 
 import Login from "./Components/Login/Login.jsx";
 import './App.css'
+import { BrowserRouter,Routes, Route, useNavigate } from "react-router-dom";
 import Main from "./Components/Main/Main.jsx";
-import { BrowserRouter } from "react-router-dom";
-import { useEffect } from "react";
-import { UseSelector,useDispatch, useSelector } from "react-redux";
+import { useEffect , useState} from "react";
+// import { useDispatch, useSelector } from "react-redux";
 
 function App() {
-  const myState = useSelector((state)=>state.loginAndLogout);
-console.log(myState)
-  
+ const navigate = useNavigate();
+  const [localToken,setLocalToken] = useState();
   useEffect(()=>{
-    const hash = window.location.hash;
-    let  token = null;
-    if(hash)  token = hash.substring(1).split('&')[0].split('=')[1];
-  },[])
+    const gettoken = window.localStorage.getItem('token');
+    if(gettoken) navigate('/main');
+    else {
+
+      const hash = window.location.hash;
+      if( hash) {
+        const token = hash.substring(1).split("&")[0].split('=')[1];
+        localStorage.setItem('token',token);
+        setLocalToken('token');
+      }
+    }
+  },[]);
+
+
+
   return (
-    <BrowserRouter>
+  
     <div className="App">
-      {!myState.login ? <Login/> : <Main/>}
-    
+      <Routes>
+        <Route path='/' element= { <Login/> }/>
+        <Route path='/main' element= {<Main/> }/>
+      </Routes>
     </div>
-    </BrowserRouter>
+
   );
 }
 

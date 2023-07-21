@@ -1,15 +1,16 @@
+// import React, { useState ,useEffect} from "react";
 import React, { useState } from "react";
 import "./Login.css";
 import { BiUserCircle } from "react-icons/bi";
 import { RiLockPasswordLine } from "react-icons/ri";
-import { useDispatch } from "react-redux";
-import { loginUser } from "../../actions";
+// import { useDispatch } from "react-redux";
+// import { loginUser } from "../../actions";
 
 import Login_Logo from "../../images/Login_Logo.png";
 
 const Login = () => {
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
 
   const [username, setUsername] = useState("");
@@ -19,6 +20,24 @@ const Login = () => {
   const [chUserpwd, setChUserpwd] = useState(false);
   const [blankUserpwd, setBlankUserpwd] = useState(false);
 
+  
+
+
+
+  
+  // useEffect(()=>{
+  //   const hash = window.location.hash;
+  //   let  token = window.localStorage.getItem('token');
+     
+  //   if(token && hash)
+  //   {
+  //    token = hash.substring(1).split('&').find(elem => elem.startsWith("access_token")).split('=')[1];
+  //   window.location.hash = "";
+  //   window.localStorage.setItem('token',token);
+  //   props.saveToken(token);
+
+  //   }
+  // },[])
 
   const handleSubmit =  (e) => {
     e.preventDefault();
@@ -29,10 +48,9 @@ const Login = () => {
    
 
 
-    const clinetID = process.env.REACT_APP_CLIENT_ID;
-    console.log(process.env.REACT_APP_CLIENT_ID)
+    const clientID = "a1e0a63c7e72420c84821373f1364d6b";
     const redirectURL = "http://localhost:3000/";
-    const apiURL = "https://accounts.spotify.com/authorize/";
+    const apiURL = "https://accounts.spotify.com/authorize";
     const scope = [
       "user-read-email",
       "user-read-private",
@@ -43,11 +61,12 @@ const Login = () => {
       "user-top-read",
       "user-read-recently-played",
     ];
+    window.location.href = `${apiURL}?client_id=${clientID}&redirect_uri=${redirectURL}&scope=${scope.join(" ")}&response_type=token&show_daialog=true`
 
-    console.log(username , user_password)
-    window.location.assign ( `${apiURL}?client_id=${clinetID}&redirect_uri=${redirectURL}&scope=${scope.join(" ")}&response_type=token&show_daialog=true`)
-    dispatch(loginUser());
-  };
+    // dispatch(loginUser());
+  }
+
+  
 
   return (
     <div className="Login-Container">
@@ -96,7 +115,7 @@ const Login = () => {
         </form>
       </div>
     </div>
-  );
+  )
 };
 
 export default Login;

@@ -4,17 +4,20 @@ import { AiFillHome } from "react-icons/ai";
 import { BiUserCircle, BiSolidPlaylist } from "react-icons/bi";
 import { BsSearch } from "react-icons/bs";
 import { FiLogOut } from "react-icons/fi";
-import { Link ,useLocation } from "react-router-dom";
+import { Link,useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import {logOutUser} from '../../actions/index'
-import { useDispatch } from "react-redux";
+// import { Link ,Navigate,useLocation } from "react-router-dom";
+// import {logOutUser} from '../../actions/index'
+// import { useDispatch } from "react-redux";
 
 
 const SideBar = (props) => {
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const location = useLocation(); // returns window.location object
+  const navigate = useNavigate();
   const [active, setActive] = useState(null);
+  
   
   
   useEffect(() => {
@@ -24,7 +27,9 @@ const SideBar = (props) => {
 
   const handleLogout = (e) =>{
     e.preventDefault();
-    dispatch(logOutUser());
+    window.localStorage.removeItem('token');
+    navigate('/');
+    // dispatch(logOutUser());
   }
 
 
