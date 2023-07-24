@@ -60,3 +60,10 @@
     align-items: center;
     gap: 4rem;
 }
+
+
+.row{
+  gap: 4rem;
+  display: flex;
+  justify-content:flex-start;
+}

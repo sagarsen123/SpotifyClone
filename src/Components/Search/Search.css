@@ -3,6 +3,7 @@
     display: flex;
     flex-direction: column;
     height: 100%;
+   
     padding: 3rem 3rem 0rem 3rem;
 }
 
@@ -55,7 +56,7 @@
 .searchedResultImg {
   position: relative;
   width: fit-content;
-  
+  gap: 2rem;
   height: max-content;
   border-radius:20px ;
 }
@@ -129,11 +130,17 @@
     padding: .2rem;
     flex-direction: column;
     align-items: center;
+    width: 100%;
+    text-align: left;
     justify-content: center;
 }
-
-.searchTimeStampAndPlay h4,p{
+.searchSongDetails h4,.searchSongDetails p{
+  width: 100%;
+  text-align: left;
+}
+.searchTimeStampAndPlay h4, p{
     margin: 0;
+    
 }
 
 

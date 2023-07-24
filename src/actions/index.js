@@ -12,3 +12,11 @@ export const logOutUser = () => {
         type : 'logout'
     }
 }
+
+
+export const updateToken = (token) => {
+    return {
+        type : 'updateToken',
+        payload : token
+    }
+}

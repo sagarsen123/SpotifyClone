@@ -45,30 +45,30 @@ const SideBar = (props) => {
         <nav className="navbar">
           <ul>
             <Link
-              to="/"
-              className={"navLink" + (active === "/" ? " active" : "")}
+              to="/main/"
+              className={"navLink" + (active === "/main/" ? " active" : "")}
             >
               <AiFillHome />
               <span>Home</span>
             </Link>
             <Link
-              to="/Profile"
-              className={"navLink" + (active === "/Profile" ? " active" : "")}
+              to="/main/Profile"
+              className={"navLink" + (active ==="/main/Profile" ? " active" : "")}
             >
               <BiUserCircle />
               <span>Profile</span>
             </Link>
             <Link
-              to="/Search"
-              className={"navLink" + (active === "/Search" ? " active" : "")}
+              to="/main/Search"
+              className={"navLink" + (active === "/main/Search" ? " active" : "")}
             >
               <BsSearch />
               <span>Search</span>
             </Link>
             <Link
-              to="/Featured-Playlist"
+              to="/main/Featured-Playlist"
               className={
-                "navLink" + (active === "/Featured-Playlist" ? " active" : "")
+                "navLink" + (active === "/main/Featured-Playlist" ? " active" : "")
               }
             >
               <BiSolidPlaylist />
