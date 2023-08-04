@@ -63,7 +63,7 @@ const Search = () => {
         )
        
       
-        let currArray = myState.listingofweeksongs.Songs.slice(0,myState.currIdx+1);
+        let currArray = myState.listingofweeksongs.Songs.slice(0,myState.currIdx);
           console.log(currArray);
        let grabedArtistSongsArray = grabedArtistSongs.data.tracks
        for(let song of grabedArtistSongsArray){
@@ -90,7 +90,7 @@ const Search = () => {
           },
         }
       )
-      let currArray = myState.listingofweeksongs.Songs.slice(0,myState.currIdx+1);
+      let currArray = myState.listingofweeksongs.Songs.slice(0,myState.currIdx);
       currArray.push(grabedSong.data)
      
       dispatch(updatePlaySongs(currArray))

@@ -24,6 +24,7 @@ const Home = () => {
   });
 
   const getFeaturePlaylist = async () => {
+    // if(myState.listingofweeksongs?.Songs?.length !== 0) return;
     try {
       let fPlayListReceived = await axios.get(
         "https://api.spotify.com/v1/browse/featured-playlists",
@@ -39,7 +40,7 @@ const Home = () => {
     }
   };
   const getFeatureSongs = async (num) => {
-
+    if(myState.listingofweeksongs?.Songs?.length !== 0) {setfSongs(myState.listingofweeksongs.Songs)}
     try {
       let fSongsReceived = await axios.get(
         `https://api.spotify.com/v1/me/top/tracks?limit=${num}`,
