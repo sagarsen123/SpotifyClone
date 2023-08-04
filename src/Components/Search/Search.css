@@ -54,6 +54,7 @@
 }
 
 .searchedResultImg {
+  cursor: pointer;
   position: relative;
   width: fit-content;
   gap: 2rem;
@@ -90,13 +91,14 @@
 }
 
 .songListContainer {
-  max-height: 40rem;
+  max-height: 60rem;
   overflow-x: hidden;
   overflow-y: scroll;
 }
 
 .searchsongContainer {
   display: flex;
+  cursor: pointer;
   flex-direction: row;
   justify-content: space-between;
 }
@@ -110,6 +112,7 @@
 
 .searchSongImage {
   margin: 0rem 1rem;
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -152,22 +155,60 @@ p {
 }
 
 /* filter css */
-.filter {padding: .4rem;
-  margin: .2rem .1rem;
+.filter {
+  padding: 0.4rem;
+  margin: 0.2rem 0.1rem;
   border-radius: 15px;
   outline: none;
- background-color:  #454545;;
+  background-color: #454545;
   color: white;
-  opacity: .4;
+  opacity: 0.4;
   border: none;
-  
 }
 
-.filter option{
+.filter option {
   color: white;
-  background-color:  #0f0f0f;
+  background-color: #0f0f0f;
 }
-.filter option:hover{
+.filter option:hover {
   color: white;
-  background-color:  #454545;
+  background-color: #454545;
+}
+
+.unSearchedDiv {
+  height: "20rem";
+  display: "flex";
+  align-items: "center";
+  justify-content: "center";
+}
+
+.unSearchedDivimg {
+  position: "relative";
+  height: "30rem";
+  top: "50%";
+}
+
+@media screen and (max-width: 600px) {
+  .unSearchedDiv img {
+    position: relative;
+    height: 13rem;
+    top: 15%;
+  }
+  .searchBarContainer {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 2rem 1rem 0rem 1rem;
+}
+.topResultsBox h2 {
+  text-align: left;
+  font-size: 3rem;
+  padding: 1rem 1rem;
+}
+.searchSongDetails h4, .searchSongDetails p {
+
+  font-size: 0.6rem;
+  
+}
 }

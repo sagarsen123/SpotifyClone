@@ -1,10 +1,6 @@
 .card {
-  /* min-height: 16rem; */
-  /* height: 19%;
-  width: 19%; */
   width: 317px;
   height: 328px;
-  /* min-width: 17rem; */
   border-radius: 10%;
   padding: 0px;
   background-color: #242424;
@@ -17,7 +13,6 @@
   height: 211px;
   width: 317px;
   border-radius: 10% 10% 0 0;
-
 }
 
 .card h3 {
@@ -33,7 +28,7 @@
 }
 
 .CardDetails {
-  height: 280px;
+
   height: 80px;
   top: 229px;
   left: 17px;
@@ -41,3 +36,36 @@
   padding: 0.8rem 1.6rem 0rem 1rem;
   text-align: justify;
 }
+
+@media screen and (max-width: 600px) {
+  .card {
+    width: 233px;
+    height: 288px;
+   
+   
+  }
+
+
+  .card img {
+    height: 171px;
+  width: 233px;
+    border-radius: 10% 10% 0 0;
+  }
+  .card h3{
+    font-size: 14px;
+  }
+  .card p{
+    font-size: 12px;
+  }
+  .CardDetails {
+    position: absolute;
+    height: 80px;
+    top: 168px;
+    left: 8px;
+    right: 8px;
+    gap: 11px;
+    padding: 1rem 0rem 1rem 0rem;
+    text-align: justify;
+  }
+}
+

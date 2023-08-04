@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import searchHome from "../../images/SearchHome.png";
-import { playSong,playingSongs,pausingSongs } from "../../actions";
+import { playSong,playingSongs,pausingSongs, updatePlaySongs } from "../../actions";
 
 const Search = () => {
   const [searched, setSearched] = useState(false);
@@ -48,8 +48,58 @@ const Search = () => {
     setSearched(true);
   };
 
-  const handleSongClick = (id) =>{
 
+  const handleArtistClick = async(artistid) =>{
+    if(artistid==="") return console.log('no artist id found');
+    else {
+      try {
+        let grabedArtistSongs = await axios.get(
+          `https://api.spotify.com/v1/artists/${artistid}/top-tracks?market=ES`,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem('token')}}`,
+            },
+          }
+        )
+       
+      
+        let currArray = myState.listingofweeksongs.Songs.slice(0,myState.currIdx+1);
+          console.log(currArray);
+       let grabedArtistSongsArray = grabedArtistSongs.data.tracks
+       for(let song of grabedArtistSongsArray){
+        currArray.push(song);
+       }
+       console.log(currArray);       
+        dispatch(updatePlaySongs(currArray))
+        dispatch(playSong());
+        dispatch(playingSongs())
+       
+      }catch{
+  
+      }
+    }
+  }
+
+  const handleSongClick = async (Songid) =>{
+    try {
+      let grabedSong = await axios.get(
+        `https://api.spotify.com/v1/tracks/${Songid}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}}`,
+          },
+        }
+      )
+      let currArray = myState.listingofweeksongs.Songs.slice(0,myState.currIdx+1);
+      currArray.push(grabedSong.data)
+     
+      dispatch(updatePlaySongs(currArray))
+      dispatch(playSong());
+      dispatch(playingSongs())
+     
+    }catch{
+
+    }
   }
 
   return (
@@ -86,11 +136,12 @@ const Search = () => {
                   <>
                     <h2>Top Artists</h2>
                     <div className="row">
-                      {searchedArtists.map((artist) => {
+                      {searchedArtists.slice(0,6).map((artist) => {
                         return (
                           <div
                             key={artist ? artist.id : ""}
                             className="searchedResultImg"
+                            onClick={()=>handleArtistClick(artist? artist.id : "")}
                           >
                             <img
                               src={
@@ -119,9 +170,8 @@ const Search = () => {
                   {searchedSongs !== 0 &&
                     searchedSongs.map((song) => {
                       return (
-                        <div key={song.id} onClick={()=>handleSongClick(song.id)} className="searchsongContainer"  
-                        // onClick={(song.id)=> {console.log("clicked");dispatch(pausingSongs());setTimeout(()=>{dispatch(playingSongs());dispatch(playSong())},1000);}}
-                        >
+                        <div key={song.id} onClick={()=>handleSongClick(song.id)} className="searchsongContainer"  >
+                        {/* // onClick={(song.id)=> {console.log("clicked");dispatch(pausingSongs());setTimeout(()=>{dispatch(playingSongs());dispatch(playSong())},1000);}} */}
                           <div className="songImgeAndDetails">
                             <div className="searchSongImage">
                               <img
@@ -163,17 +213,10 @@ const Search = () => {
           <div>Sorry no Results to show</div>
         )
       ) : (
-        <div
-          style={{
-            height: "20rem",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
+        <div className="unSearchedDiv">
           <img
+          className="unSearchedDivimg"
             src={searchHome}
-            style={{ position: "relative", height: "30rem", top: "50%" }}
             alt=""
           />
         </div>

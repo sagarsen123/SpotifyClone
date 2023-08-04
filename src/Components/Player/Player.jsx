@@ -113,7 +113,7 @@ dispatch(stopSong())
     }
     // setTracks(myState.);
     playAnimationRef.current = requestAnimationFrame(repeat);
-  }, [togglePlayPause, isPlaying, repeat, audioRef, myState.currIdx]);
+  }, [togglePlayPause,handleNext, isPlaying, repeat, audioRef, myState.currIdx]);
   const handleProgressChange = () => {
     audioRef.current.currentTime = progressBarRef.current.value;
   };

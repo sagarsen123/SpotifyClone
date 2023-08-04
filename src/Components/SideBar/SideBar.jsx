@@ -7,13 +7,14 @@ import { FiLogOut } from "react-icons/fi";
 import { Link,useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 // import { Link ,Navigate,useLocation } from "react-router-dom";
-// import {logOutUser} from '../../actions/index'
-// import { useDispatch } from "react-redux";
+
+import {stopSong,pausingSongs} from '../../actions/index'
+import { useDispatch } from "react-redux";
 
 
 const SideBar = (props) => {
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const location = useLocation(); // returns window.location object
   const navigate = useNavigate();
   const [active, setActive] = useState(null);
@@ -27,9 +28,16 @@ const SideBar = (props) => {
 
   const handleLogout = (e) =>{
     e.preventDefault();
-    window.localStorage.removeItem('token');
-    window.localStorage.removeItem('playlistAndSongs');
-    navigate('/');
+    dispatch(pausingSongs());
+    dispatch(stopSong())
+
+
+    setTimeout(()=>{
+      window.localStorage.removeItem('token');
+      window.localStorage.removeItem('playlistAndSongs');
+      navigate('/');
+    },200)
+   
     // dispatch(logOutUser());
   }
 

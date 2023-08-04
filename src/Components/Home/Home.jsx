@@ -12,11 +12,12 @@ import { useParams } from "react-router-dom";
 
 const Home = () => {
   
-  const [HomeLoading, setHomeLoading] = useState(false);
+  const [HomeLoading,setHomeLoading] = useState(false);
   const [fPlaylist, setFPlaylist] = useState();
   const [fSongs, setfSongs] = useState();
   const dispatch = useDispatch();
-
+  const [fullPlaylist,setFullPlaylist] = useState(false);
+  const [fullSongs,setFullSongs] = useState(false);
   const params = useParams();
   const myState = useSelector((state) => {
     return state.loginAndLogout;
@@ -25,7 +26,7 @@ const Home = () => {
   const getFeaturePlaylist = async () => {
     try {
       let fPlayListReceived = await axios.get(
-        "https://api.spotify.com/v1/browse/featured-playlists?limit=8",
+        "https://api.spotify.com/v1/browse/featured-playlists",
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -37,11 +38,11 @@ const Home = () => {
       // console.log(err);
     }
   };
-  const getFeatureSongs = async () => {
+  const getFeatureSongs = async (num) => {
 
     try {
       let fSongsReceived = await axios.get(
-        "https://api.spotify.com/v1/me/top/tracks?limit=8",
+        `https://api.spotify.com/v1/me/top/tracks?limit=${num}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}}`,
@@ -49,7 +50,10 @@ const Home = () => {
         }
       );
       const listingofweeksongs=fSongsReceived.data.items
+      
+
       setfSongs(fSongsReceived.data.items);
+    
       dispatch(updatePlaySongs([]))
      } catch (err) {
       // console.log(err);
@@ -59,7 +63,7 @@ const Home = () => {
   useEffect(() => {
    
       getFeaturePlaylist();
-      getFeatureSongs();
+      getFeatureSongs(20);
    
       
   }, []);
@@ -86,17 +90,18 @@ const Home = () => {
       <div className="PlaylistContainer">
         <div className="playGroupHead">
           <h3>Featured Playlist</h3>
-          <p>See All</p>
+          <p onClick={()=>setFullPlaylist(!fullPlaylist)}>{fullPlaylist ? "Show Less" : "See All"}</p>
         </div>
         <div className="playCardsGroup">
           {fPlaylist ? (
 
             <div className="row">
-              {fPlaylist.map((item) => {
+              {(fullPlaylist? fPlaylist: fPlaylist.slice(0,6)).map((item) => {
               
                 return (
                   <Card
                   type="playlist"
+                  setfuntion={setFullPlaylist}
                     id = {item.id}
                     Title={item.name}
                     key={item.id}
@@ -114,17 +119,18 @@ const Home = () => {
       <div className="PlaylistContainer">
         <div className="playGroupHead">
           <h3>This Week Songs</h3>
-          <p>See All</p>
+          <p onClick={()=>setFullSongs(!fullSongs)}>{fullSongs ? "Show Less" : "See All"}</p>
         </div>
         <div className="playCardsGroup">
           {fSongs ? (
             
             <div className="row">
-              {fSongs.map((song) => {
+              {(fullSongs?fSongs : fSongs.slice(0,6)).map((song) => {
               
                 return (
                   <Card
                   type = "Songs"
+                  setfuntion={setFullSongs}
                     id={song.id}
                     key={song.id}
                     className="col"

@@ -211,3 +211,48 @@ input[type="range"]:active::-moz-range-thumb {
   cursor: pointer;
 }
 
+
+
+
+
+@media screen and (max-width: 600px) {
+  .player {
+      bottom: 4rem;
+      height: 4rem;
+  }
+  .songInfoImg img {
+      height: 20%;
+      width : 2rem;
+  }
+  .SongInfoDetails h4 {
+    font-size: 0.6rem;
+    height: 0.9rem;
+    width: 2.3rem;
+  
+  } 
+
+ .SongInfoDetails p {
+    color: rgba(255, 255, 255, 1);
+    font-size: 0.5rem;
+    width: fit-content;
+    height: 0.6rem;
+}
+.musicIcon {
+  font-size: 1rem;
+  cursor: pointer;
+}
+.unClickable {
+  color: #838383;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.musicTimeStamp {
+  font-size: 0.7rem;
+  margin: auto 0.4rem;
+}
+
+
+.musicVolume {
+  font-size: 1rem;
+}
+}
