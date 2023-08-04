@@ -1,10 +1,10 @@
 .searchBarContainer {
-    color: white;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-   
-    padding: 3rem 3rem 0rem 3rem;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  padding: 3rem 3rem 0rem 3rem;
 }
 
 .SearchBox {
@@ -58,7 +58,7 @@
   width: fit-content;
   gap: 2rem;
   height: max-content;
-  border-radius:20px ;
+  border-radius: 20px;
 }
 
 .searchedResultImg img {
@@ -66,7 +66,7 @@
   width: 40%;
   min-width: 20rem;
   max-height: 18rem;
-  border-radius:20px ;
+  border-radius: 20px;
 }
 
 .searchedResultImg p {
@@ -74,7 +74,7 @@
   padding: 1rem 1rem;
   margin: 0px;
   border: none;
-  bottom : 0%;
+  bottom: 0%;
   width: 100%;
   font-size: 1.5rem;
   font-weight: 600;
@@ -82,77 +82,92 @@
   opacity: 0.6;
 }
 
-
-
 /* Songs  */
 
-.songsBox{
-  
-    padding: 2rem 0rem;
-    text-align: left;
+.songsBox {
+  padding: 2rem 0rem;
+  text-align: left;
 }
 
-.songListContainer{
-    max-height: 40rem;
-    overflow-x: hidden;
-    overflow-y: scroll;
+.songListContainer {
+  max-height: 40rem;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
-.searchsongContainer{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    
-  
+.searchsongContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
-.songImgeAndDetails{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: .5rem;
+.songImgeAndDetails {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
 }
 
-
-.searchSongImage{
-    margin:  0rem 1rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.searchSongImage {
+  margin: 0rem 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.searchSongImage img{
-    max-width: 4rem;
+.searchSongImage img {
+  max-width: 4rem;
 }
 
-.searchSongDetails{
-    display: flex;
-    padding: .2rem;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    text-align: left;
-    justify-content: center;
+.searchSongDetails {
+  display: flex;
+  padding: 0.2rem;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  text-align: left;
+  justify-content: center;
 }
-.searchSongDetails h4,.searchSongDetails p{
+.searchSongDetails h4,
+.searchSongDetails p {
   width: 100%;
   text-align: left;
 }
-.searchTimeStampAndPlay h4, p{
-    margin: 0;
-    
+.searchTimeStampAndPlay h4,
+p {
+  margin: 0;
 }
 
-
-.searchTimeStampAndPlay{
-    display: flex;
-    padding: 1rem;
-    justify-content: center;
-    align-items: center;
-    gap : 1rem;
-    font-size: 1rem;
+.searchTimeStampAndPlay {
+  display: flex;
+  padding: 1rem;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1rem;
 }
 
 .TimestampIcon {
-    font-size: 1.5rem;
+  font-size: 1.5rem;
+}
+
+/* filter css */
+.filter {padding: .4rem;
+  margin: .2rem .1rem;
+  border-radius: 15px;
+  outline: none;
+ background-color:  #454545;;
+  color: white;
+  opacity: .4;
+  border: none;
+  
+}
+
+.filter option{
+  color: white;
+  background-color:  #0f0f0f;
+}
+.filter option:hover{
+  color: white;
+  background-color:  #454545;
 }

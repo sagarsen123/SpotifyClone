@@ -4,66 +4,67 @@ import HomeDp from "../../images/HomeDp.png";
 import Card from "../Card/Card";
 import PlaylistThumbnail from "../../images/PlaylistThumbnail.png";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import axios from "axios";
+import { updatePlaySongs } from "../../actions";
+import { useParams } from "react-router-dom";
 
 const Home = () => {
+  
   const [HomeLoading, setHomeLoading] = useState(false);
   const [fPlaylist, setFPlaylist] = useState();
   const [fSongs, setfSongs] = useState();
+  const dispatch = useDispatch();
+
+  const params = useParams();
   const myState = useSelector((state) => {
     return state.loginAndLogout;
   });
 
   const getFeaturePlaylist = async () => {
     try {
-      setHomeLoading(true);
       let fPlayListReceived = await axios.get(
         "https://api.spotify.com/v1/browse/featured-playlists?limit=8",
         {
           headers: {
-            Authorization: `Bearer ${myState.userToken}`,
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
           },
         }
       );
-      // console.log(fPlayListReceived.data.playlists.items);
       setFPlaylist(fPlayListReceived.data.playlists.items);
-      setHomeLoading(false);
     } catch (err) {
       // console.log(err);
     }
   };
   const getFeatureSongs = async () => {
-    // setHomeLoading(true);
+
     try {
       let fSongsReceived = await axios.get(
         "https://api.spotify.com/v1/me/top/tracks?limit=8",
         {
           headers: {
-            Authorization: `Bearer ${myState.userToken}`,
+            Authorization: `Bearer ${localStorage.getItem('token')}}`,
           },
         }
       );
-      // console.log(fSongsReceived.data.items);
+      const listingofweeksongs=fSongsReceived.data.items
       setfSongs(fSongsReceived.data.items);
-      // setHomeLoading(false);
-    } catch (err) {
+      dispatch(updatePlaySongs([]))
+     } catch (err) {
       // console.log(err);
     }
   };
 
-
   useEffect(() => {
-    setTimeout(()=>{
+   
       getFeaturePlaylist();
       getFeatureSongs();
-    },1500)
-    
-  }, [window]);
+   
+      
+  }, []);
 
-  // const desc =
-  //   "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste dolor deserunt nemo illum animi! Sequi .";
+
 
   return HomeLoading ? (
     <p>Loading</p>
@@ -89,10 +90,14 @@ const Home = () => {
         </div>
         <div className="playCardsGroup">
           {fPlaylist ? (
+
             <div className="row">
               {fPlaylist.map((item) => {
+              
                 return (
                   <Card
+                  type="playlist"
+                    id = {item.id}
                     Title={item.name}
                     key={item.id}
                     imgsrc={item.images[0].url}
@@ -113,10 +118,14 @@ const Home = () => {
         </div>
         <div className="playCardsGroup">
           {fSongs ? (
+            
             <div className="row">
               {fSongs.map((song) => {
+              
                 return (
                   <Card
+                  type = "Songs"
+                    id={song.id}
                     key={song.id}
                     className="col"
                     Title={song.name}
@@ -128,7 +137,7 @@ const Home = () => {
             </div>
           ) : (
             <p>Loading...!</p>
-          )}
+          )} 
         </div>
       </div>
     </div>

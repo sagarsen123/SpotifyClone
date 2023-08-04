@@ -28,6 +28,7 @@ const SideBar = (props) => {
   const handleLogout = (e) =>{
     e.preventDefault();
     window.localStorage.removeItem('token');
+    window.localStorage.removeItem('playlistAndSongs');
     navigate('/');
     // dispatch(logOutUser());
   }

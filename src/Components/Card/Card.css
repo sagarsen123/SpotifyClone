@@ -11,11 +11,13 @@
   border: none;
   color: rgba(255, 255, 255, 0.5);
   box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+  cursor: pointer;
 }
 .card img {
   height: 211px;
   width: 317px;
   border-radius: 10% 10% 0 0;
+
 }
 
 .card h3 {
