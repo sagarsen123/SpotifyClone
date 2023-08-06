@@ -30,13 +30,9 @@ const SideBar = (props) => {
     e.preventDefault();
     dispatch(pausingSongs());
     dispatch(stopSong())
-
-
-    setTimeout(()=>{
       window.localStorage.removeItem('token');
       window.localStorage.removeItem('playlistAndSongs');
       navigate('/');
-    },200)
    
     // dispatch(logOutUser());
   }

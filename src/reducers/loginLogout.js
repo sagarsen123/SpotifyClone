@@ -4,7 +4,7 @@ const inititalState = {
     userToken : null,
     isPlaying : false,
     listingofweeksongs : [],
-    currIdx : 0,
+    currIdx : -1,
     playingSongs : true,
 }
 

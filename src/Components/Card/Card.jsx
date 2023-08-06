@@ -16,12 +16,12 @@ const Card = (props) => {
             },
           }
         )
-        let currArray = myState.listingofweeksongs.Songs.slice(0,myState.currIdx-1);
+        let currArray = myState.listingofweeksongs.Songs.slice(0,myState.currIdx+1);
         for( let songs of songsOfPlaylist.data.items){
           currArray.push(songs.track);
         }
         dispatch(updatePlaySongs(currArray))
-        dispatch(myState.currIdx + 1);
+        dispatch(currTrackIdx(myState.currIdx + 1));
         // console.log(songsOfPlaylist.data.items)
       }catch{
   
@@ -37,11 +37,12 @@ const Card = (props) => {
             },
           }
         )
-        let currArray = myState.listingofweeksongs.Songs.slice(0,myState.currIdx);
+        let currArray = myState.listingofweeksongs.Songs.slice(0,myState.currIdx+1);
         currArray.push(grabedSong.data)
        
         dispatch(updatePlaySongs(currArray))
-       
+        dispatch(currTrackIdx(myState.currIdx + 1));
+
        
       }catch{
   

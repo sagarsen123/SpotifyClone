@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import axios from "axios";
 import { updatePlaySongs } from "../../actions";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const Home = () => {
   
@@ -19,12 +19,12 @@ const Home = () => {
   const [fullPlaylist,setFullPlaylist] = useState(false);
   const [fullSongs,setFullSongs] = useState(false);
   const params = useParams();
+  const navigate = useNavigate();
   const myState = useSelector((state) => {
     return state.loginAndLogout;
   });
 
   const getFeaturePlaylist = async () => {
-    // if(myState.listingofweeksongs?.Songs?.length !== 0) return;
     try {
       let fPlayListReceived = await axios.get(
         "https://api.spotify.com/v1/browse/featured-playlists",
@@ -40,7 +40,7 @@ const Home = () => {
     }
   };
   const getFeatureSongs = async (num) => {
-    if(myState.listingofweeksongs?.Songs?.length !== 0) {setfSongs(myState.listingofweeksongs.Songs)}
+    // if(myState.listingofweeksongs?.Songs?.length !== 0) {setfSongs(myState.listingofweeksongs.Songs)}
     try {
       let fSongsReceived = await axios.get(
         `https://api.spotify.com/v1/me/top/tracks?limit=${num}`,
@@ -55,19 +55,19 @@ const Home = () => {
 
       setfSongs(fSongsReceived.data.items);
     
-      dispatch(updatePlaySongs([]))
      } catch (err) {
       // console.log(err);
     }
   };
 
   useEffect(() => {
-   
-      getFeaturePlaylist();
+      if(localStorage.getItem('token')===null) navigate('/')
+    else{
+    getFeaturePlaylist();
       getFeatureSongs(20);
-   
+    } 
       
-  }, []);
+  },[]);
 
 
 

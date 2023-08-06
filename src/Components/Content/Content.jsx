@@ -1,16 +1,18 @@
 import Home from '../Home/Home'
-import { Routes ,Route } from 'react-router-dom'
+import { Routes ,Route, useNavigate } from 'react-router-dom'
 import Search from '../Search/Search'
-import axios from 'axios'
 import Profile from '../Profile/Profile'
 import FeaturedPlaylist from '../FeaturedPlaylist/FeaturedPlaylist'
 import './Content.css'
+import PageNotFound from '../pageNotFound/PageNotFound'
 import { useEffect } from 'react'
 
 const Content = (props) => {
-  
+  const navigate = useNavigate();
  
-  
+  useEffect(()=>{
+    if(localStorage.getItem('token')===null) navigate('/')
+},[localStorage.getItem('token')])
 
 
   return (
@@ -23,6 +25,8 @@ const Content = (props) => {
         <Route path='/Search' element={<Search/>} />
         {/* <Route path='/Featured-Playlist' element={<FeaturedPlaylist/>} /> */}
         <Route path='/Featured-Playlist' element={<Home/>} />
+        <Route path="*" element={<PageNotFound/>}/>
+
       </Routes>
        
     </div>

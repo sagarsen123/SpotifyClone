@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import searchHome from "../../images/SearchHome.png";
-import { playSong,playingSongs,pausingSongs, updatePlaySongs } from "../../actions";
+import { playSong,playingSongs,pausingSongs,currTrackIdx, updatePlaySongs } from "../../actions";
 
 const Search = () => {
   const [searched, setSearched] = useState(false);
@@ -63,7 +63,7 @@ const Search = () => {
         )
        
       
-        let currArray = myState.listingofweeksongs.Songs.slice(0,myState.currIdx);
+        let currArray = myState.listingofweeksongs.Songs.slice(0,myState.currIdx+1);
           console.log(currArray);
        let grabedArtistSongsArray = grabedArtistSongs.data.tracks
        for(let song of grabedArtistSongsArray){
@@ -71,6 +71,8 @@ const Search = () => {
        }
        console.log(currArray);       
         dispatch(updatePlaySongs(currArray))
+        dispatch(currTrackIdx(myState.currIdx + 1));
+
         dispatch(playSong());
         dispatch(playingSongs())
        
@@ -90,10 +92,12 @@ const Search = () => {
           },
         }
       )
-      let currArray = myState.listingofweeksongs.Songs.slice(0,myState.currIdx);
+      let currArray = myState.listingofweeksongs.Songs.slice(0,myState.currIdx+1);
       currArray.push(grabedSong.data)
      
       dispatch(updatePlaySongs(currArray))
+      dispatch(currTrackIdx(myState.currIdx + 1));
+
       dispatch(playSong());
       dispatch(playingSongs())
      

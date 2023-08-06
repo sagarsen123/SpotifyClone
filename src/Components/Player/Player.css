@@ -30,11 +30,11 @@
 
 .songInfoImg img {
   height: 50%;
-  /* width: 4.8rem; */
+border-radius: 50%;
 }
 
 .SongInfoDetails {
-  padding: 0.3rem 1.5rem;
+  padding: 0.3rem 1rem;
   display: flex;
   flex-direction: column;
   font-family: "Raleway", sans-serif;
@@ -51,7 +51,8 @@
 .SongInfoDetails p {
   color: rgba(255, 255, 255, 1);
   font-size: 0.6rem;
-  height: .8rem;
+  width: 100%;
+  height: 0.8rem;
 }
 
 /* controls */
@@ -70,7 +71,9 @@
 
 .songControls {
   background: transparent;
+  display: flex;
   color: white;
+  font-size: 2rem;
 }
 
 .musicIcon {
@@ -83,7 +86,7 @@
   display: flex;
   width: 60%;
   justify-content: center;
-  /* padding: 1rem 3rem; */
+  margin: 0.5rem 0.3rem;
   align-items: center;
 }
 
@@ -101,7 +104,7 @@
 .currentProgress {
   /* width: 55%; */
   height: 0.6rem;
-  
+
   border-radius: 14px;
   background-color: white;
 }
@@ -109,23 +112,20 @@
 /* Music Volume */
 .musicVolume {
   display: flex;
-  width: 10%;
+  width: 12%;
   justify-content: center;
   align-items: center;
   font-size: 2rem;
 }
 
-
-
 /* custom progressBar */
-
 
 input[type="range"] {
   --range-progress: 0;
-  
+  min-width: 2rem;
   -webkit-appearance: none;
   position: relative;
-  background:#ccc;
+  background: #ccc;
   width: 100%;
   height: 2px;
   border-radius: 2px;
@@ -135,7 +135,7 @@ input[type="range"] {
 /* Input range - firefox */
 input[type="range"]::-moz-range-track {
   position: relative;
-  background:#ccc;
+  background: #ccc;
   width: 100%;
   height: 2px;
   border-radius: 2px;
@@ -144,7 +144,7 @@ input[type="range"]::-moz-range-track {
 
 /* played progress length - Chrome & safari*/
 input[type="range"]::before {
-  content: '';
+  content: "";
   height: 2px;
   background: #f50;
   width: var(--range-progress);
@@ -195,7 +195,7 @@ input[type="range"]:active::-moz-range-thumb {
   transform: scale(1.2);
 }
 
-.progress{
+.progress {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -203,56 +203,69 @@ input[type="range"]:active::-moz-range-thumb {
   padding: 2rem;
 }
 
-
-
-.unClickable{
+.unClickable {
   color: #838383;
   font-size: 2rem;
+  display: flex;
   cursor: pointer;
 }
 
+.musicVolume input {
+  max-width: 2rem;
+  margin: 0.1rem;
+  height: 4px;
+  padding: 0.2rem;
+  background: linear-gradient(
+    to right,
+    rgb(255, 85, 0) 84%,
+    rgb(204, 204, 204) 84%
+  );
+}
 
-
-
+.volumeIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 @media screen and (max-width: 600px) {
   .player {
-      bottom: 4rem;
-      height: 4rem;
+    bottom: 4rem;
+    height: 4rem;
   }
   .songInfoImg img {
-      height: 20%;
-      width : 2rem;
+    height: 20%;
+    width: 2rem;
   }
   .SongInfoDetails h4 {
     font-size: 0.6rem;
     height: 0.9rem;
-    width: 2.3rem;
-  
-  } 
+    width: 4rem;
+    text-wrap:nowrap;
+  }
 
- .SongInfoDetails p {
+  .SongInfoDetails p {
     color: rgba(255, 255, 255, 1);
     font-size: 0.5rem;
-    width: fit-content;
-    height: 0.6rem;
-}
-.musicIcon {
-  font-size: 1rem;
-  cursor: pointer;
-}
-.unClickable {
-  color: #838383;
-  font-size: 1rem;
-  cursor: pointer;
-}
-.musicTimeStamp {
-  font-size: 0.7rem;
-  margin: auto 0.4rem;
-}
+    width: -moz-fit-content;
+    width: 100%;
+    overflow: hidden;
+  }
+  .musicIcon {
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  .unClickable {
+    color: #838383;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  .musicTimeStamp {
+    font-size: 0.7rem;
+    margin: auto 0.4rem;
+  }
 
-
-.musicVolume {
-  font-size: 1rem;
-}
+  .musicVolume {
+    font-size: 1rem;
+  }
 }
